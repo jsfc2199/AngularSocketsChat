@@ -26,4 +26,9 @@ export class WebsocketService {
       this.socketStatus = false
     })
   }
+
+  //usamos un emit personalizado que sea global respecto al de socket io
+  emit(evento: string, payload?: any, callback?: Function){
+    this.socket.emit(evento, payload, callback)
+  }
 }
