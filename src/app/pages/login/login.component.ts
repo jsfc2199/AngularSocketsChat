@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-login',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  public wsService = inject(WebsocketService)
+  nombre = ''
+
+  ingresar(){
+    this.wsService.loginWs(this.nombre)
+  }
 }
