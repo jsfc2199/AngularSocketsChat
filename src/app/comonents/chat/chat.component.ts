@@ -9,19 +9,31 @@ import { Subscription } from 'rxjs';
 })
 export class ChatComponent {
   chatService = inject(ChatServiceService);
-  chatSubs = new Subscription()
+  chatSubs = new Subscription();
+
+  mensajes: any[] = [];
+
+  //scroll automático
+  elemento!: HTMLElement;
 
   ngOnInit(): void {
-    this.chatSubs = this.chatService.getMessages().subscribe((msg) => console.log(msg));
+    this.elemento = document.getElementById('chat-mensajes')!;
+    this.chatSubs = this.chatService.getMessages().subscribe((msg) => {
+      this.mensajes.push(msg);
+      setTimeout(() => {
+        this.elemento.scrollTop = this.elemento.scrollHeight; //scroll automático
+      }, 50);
+    });
   }
 
   texto = '';
   enviar() {
+    if (this.texto.trim().length === 0) return;
     this.chatService.sendMessage(this.texto);
     this.texto = '';
   }
 
   ngOnDestroy(): void {
-    this.chatSubs.unsubscribe()
+    this.chatSubs.unsubscribe();
   }
 }
