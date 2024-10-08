@@ -8,6 +8,9 @@ import { environment } from '../environments/environment.development';
 import { FooterComponent } from './comonents/footer/footer.component';
 import { ChatComponent } from './comonents/chat/chat.component';
 import { FormsModule } from '@angular/forms';
+import { ListaUsuariosComponent } from './comonents/lista-usuarios/lista-usuarios.component';
+import { LoginComponent } from './pages/login/login.component';
+import { MensajesComponent } from './pages/mensajes/mensajes.component';
 
 const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
 
@@ -15,7 +18,10 @@ const config: SocketIoConfig = { url: environment.wsUrl, options: {} };
   declarations: [
     AppComponent,
     FooterComponent,
-    ChatComponent
+    ChatComponent,
+    ListaUsuariosComponent,
+    LoginComponent,
+    MensajesComponent
   ],
   imports: [
     BrowserModule,
