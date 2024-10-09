@@ -58,6 +58,7 @@ export class WebsocketService {
   cargarStorage(){
     if(localStorage.getItem('usuario')){
       this.usuario = JSON.parse(localStorage.getItem('usuario') ?? '')
+      this.loginWs(this.usuario!.nombre)
     }
   }
 
