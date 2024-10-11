@@ -19,6 +19,7 @@ export class ChatComponent {
   ngOnInit(): void {
     this.elemento = document.getElementById('chat-mensajes')!;
     this.chatSubs = this.chatService.getMessages().subscribe((msg) => {
+      console.log(msg)
       this.mensajes.push(msg);
       setTimeout(() => {
         this.elemento.scrollTop = this.elemento.scrollHeight; //scroll automático

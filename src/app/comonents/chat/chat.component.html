@@ -1,7 +1,7 @@
 <h1>Mensajes</h1>
 <hr />
 <div id="chat-mensajes">
-  <li class="list-group-item" *ngFor="let mensaje of mensajes">{{mensaje.de}}: {{mensaje.mensaje}}</li>
+  <li class="list-group-item" *ngFor="let mensaje of mensajes">{{mensaje.de}}: {{mensaje.cuerpo}}</li>
 </div>
 
 <form (ngSubmit)="enviar()">
