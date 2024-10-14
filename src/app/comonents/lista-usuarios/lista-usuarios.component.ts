@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ChatServiceService } from '../../services/chat-service.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class ListaUsuariosComponent {
 
+  private chatService = inject(ChatServiceService)
+
+  public usuariosActivosObs!: Observable<any>
+
+  ngOnInit(): void {
+    this.usuariosActivosObs = this.chatService.getUsuariosActivos()
+  }
 }
