@@ -11,4 +11,8 @@ export class MensajesComponent {
   private wsService = inject(WebsocketService)
 
   public usuario = this.wsService.usuario?.nombre
+
+  logout(){
+    this.wsService.logout()
+  }
 }

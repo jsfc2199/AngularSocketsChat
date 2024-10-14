@@ -1,15 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Usuario } from '../classes/usuario';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebsocketService {
   public socketStatus = false;
-  public usuario?: Usuario;
+  public usuario?: Usuario | null;
 
   private socket = inject(Socket);
+  private router = inject(Router)
 
   constructor() {
     this.cargarStorage()
@@ -51,6 +53,16 @@ export class WebsocketService {
         resolve();
       });
     }); //convertimos a una promesa para que sea asincrono
+  }
+
+  logout() {
+    this.usuario = null
+    localStorage.removeItem('usuario')
+    const payload = {
+      nombre: 'NaN'
+    }
+    this.emit('configurar-usuario', payload, () => {}) //callback vacío para poder reutilizar la función de lado del servidor
+    this.router.navigateByUrl('/')
   }
 
   guardarStorage(){
