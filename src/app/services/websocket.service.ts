@@ -20,7 +20,9 @@ export class WebsocketService {
     //son observables que siempre están atentos a los eventos
     this.socket.on('connect', () => {
       console.log('conectado al servidor');
-      this.socketStatus = true;
+    this.socketStatus = true;
+    //cuando se cae el servidor refrescamos el storage
+    this.cargarStorage()
     });
 
     this.socket.on('disconnect', () => {
