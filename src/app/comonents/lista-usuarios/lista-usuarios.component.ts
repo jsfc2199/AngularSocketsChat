@@ -15,5 +15,7 @@ export class ListaUsuariosComponent {
 
   ngOnInit(): void {
     this.usuariosActivosObs = this.chatService.getUsuariosActivos()
+
+    this.chatService.emitirUsuariosActivos()
   }
 }
